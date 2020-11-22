@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=AVNADGzXrrQ
+
+
+docker build -t pablo/dockernode1 .
+
+
+docker run -p 3000:3000 -d pablo/dockernode1
