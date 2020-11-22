@@ -9,4 +9,8 @@ router.get("/testar", smartphones_controller.test);
 
 router.post("/create", smartphones_controller.create);
 
+router.get("/:id", smartphones_controller.details);
+
+router.delete("/delete/:id", smartphones_controller.delete);
+
 module.exports = router;
