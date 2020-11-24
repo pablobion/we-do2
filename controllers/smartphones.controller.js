@@ -11,11 +11,11 @@ exports.create = function (req, res) {
         nome: req.body.nome,
         marca: req.body.marca,
     });
-    smartphone.save(function (err) {
+    smartphone.save(function (err, next) {
         if (err) {
-            return next(err);
+            return res.send(err);
         }
-        res.send("Registo de Smartphone criado com sucesso | " + smartphone);
+        res.send("Registo de Smartphone criado com sucesso | " + JSON.stringify(smartphone));
     });
 };
 
