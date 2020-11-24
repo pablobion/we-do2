@@ -3,10 +3,12 @@ const Schema = mongoose.Schema;
 
 let SmartphoneSchema = new Schema({
     nome: { type: String, required: true, max: 100 },
-    marca: { type: Number, required: true },
-    description: [{ body: String, date: Date }],
+    categoria: { type: String },
+    description: { type: String },
+    integrantes: [],
+    wedos: [],
     date: { type: Date, default: Date.now },
-    author: String,
+    author: { type: String },
 });
 // Exportar o modelo
-module.exports = mongoose.model("Smartphone", SmartphoneSchema);
+module.exports = mongoose.model("boards", SmartphoneSchema);

@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const database = require("./database/connection");
 
 //rotas
-const smartphones = require("./routes/smartphones.route"); // Importa rota
+const smartphones = require("./routes/wedos"); // Importa rota
 const login = require("./routes/login");
 const logout = require("./routes/logout");
 

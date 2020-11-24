@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const password = process.env.PASSWORD;
 
 const connectDabatase = () => {
-    const url = `mongodb://admin:a12345678@cluster0-shard-00-00.pmfzf.mongodb.net:27017,cluster0-shard-00-01.pmfzf.mongodb.net:27017,cluster0-shard-00-02.pmfzf.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-942u82-shard-0&authSource=admin&retryWrites=true&w=majority`;
+    const url = `mongodb+srv://admin:a12345678@cluster0.d1hgl.mongodb.net/<dbname>?retryWrites=true&w=majority`;
 
     const options = { reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, useNewUrlParser: true };
 

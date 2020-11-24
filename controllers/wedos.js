@@ -1,16 +1,14 @@
-var Smartphone = require("../models/smartphones.model");
+var Smartphone = require("../models/boards");
 const database = require("../database/connection");
-
-exports.test = function (req, res) {
-    res.send("Olá! Teste ao Controller");
-};
 
 //Adicionar smartphone à BD
 exports.create = function (req, res) {
     let smartphone = new Smartphone({
         nome: req.body.nome,
-        marca: req.body.marca,
+        categoria: req.body.categoria,
+        description: req.body.description,
     });
+
     smartphone.save(function (err, next) {
         if (err) {
             return res.send(err);
