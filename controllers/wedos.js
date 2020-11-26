@@ -1,11 +1,11 @@
-var Boards = require("../models/boards");
+const Boards = require("../models/boards");
 const database = require("../database/connection");
 
 //Adicionar smartphone à BD
 exports.create = function (req, res) {
     let boards = new Boards({
-        nome: req.body.nome,
-        categoria: req.body.categoria,
+        name: req.body.name,
+        category: req.body.category,
         description: req.body.description,
     });
 
