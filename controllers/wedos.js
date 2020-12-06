@@ -12,7 +12,7 @@ exports.create = function (req, res) {
         if (err) {
             return res.send(err);
         }
-        res.send("Registo de Smartphone criado com sucesso | " + JSON.stringify(boards));
+        res.send("Registo de Smartphone criado com sucesso | " + JSON.stringify(boards) + " | ");
     });
 };
 

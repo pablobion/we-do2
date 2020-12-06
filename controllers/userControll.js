@@ -7,10 +7,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 exports.create = function (req, res, next) {
-    // Users.find({ email: req.body.email }, function (err, docs) {
-    //     return res.status(401).json({ message: "Já temos esse e-mail cadastrado" });
-    // });
-
     let user = new Users({
         name: req.body.name,
         email: req.body.email,
@@ -26,14 +22,17 @@ exports.create = function (req, res, next) {
 };
 
 exports.delete = async (req, res) => {
-    const { email } = req.body;
+    const email = req.jwtEmail;
 
-    const user = await Users.deleteMany({ email });
+    const user = await Users.findOne({ email });
+    if (!user) return res.status(401).json({ message: "Não existe ou o e-mail está incorreto." });
 
-    if (user) {
+    await Users.deleteMany({ email });
+
+    try {
         res.status(200).json({ message: "Usuario deletado" });
-    } else {
-        response.json({ message: "n ahamos" });
+    } catch (err) {
+        response.status(401).json({ message: err });
     }
 };
 
@@ -42,7 +41,9 @@ exports.login = async (req, res) => {
 
     const user = await Users.findOne({ email });
 
-    const token = jwt.sign({ id: user._id }, process.env.SECRET, {
+    if (!user) return res.status(401).json({ message: "E-mail ou senha incorreta" });
+
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.SECRET, {
         expiresIn: 86400,
     });
 

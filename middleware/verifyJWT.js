@@ -9,6 +9,8 @@ function verifyJWT(req, res, next) {
 
         // se tudo estiver ok, salva no request para uso posterior
         req.userId = decoded.id;
+        req.jwtEmail = decoded.email;
+
         next();
     });
 }
