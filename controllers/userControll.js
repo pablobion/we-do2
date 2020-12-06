@@ -24,12 +24,11 @@ exports.create = function (req, res, next) {
 exports.delete = async (req, res) => {
     const email = req.jwtEmail;
 
-    const user = await Users.findOne({ email });
-    if (!user) return res.status(401).json({ message: "Não existe ou o e-mail está incorreto." });
-
-    await Users.deleteMany({ email });
-
     try {
+        const user = await Users.findOne({ email });
+        if (!user) return res.status(401).json({ message: "Não existe ou o e-mail está incorreto." });
+
+        await Users.deleteMany({ email });
         res.status(200).json({ message: "Usuario deletado" });
     } catch (err) {
         response.status(401).json({ message: err });
