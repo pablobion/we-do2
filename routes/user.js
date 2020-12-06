@@ -10,5 +10,7 @@ const verifyEmail = require("../middleware/verifyEmail");
 const User = require("../models/users");
 
 router.post("/create", verifyEmail, userControll.create);
+router.delete("/delete", userControll.delete);
+router.post("/login", userControll.login);
 
 module.exports = router;

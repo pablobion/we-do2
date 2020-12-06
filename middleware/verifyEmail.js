@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/users");
+const Users = require("../models/users");
 
 const verifyEmail = async (req, res, next) => {
     const { email } = req.body;
@@ -9,7 +9,7 @@ const verifyEmail = async (req, res, next) => {
     if (regex.test(String(email).toLowerCase()) === false) return res.status(406).json({ message: "O e-mail precisa ser valido" });
     if (!email) return res.status(406).json({ message: "Você precisa informar o e-mail" });
 
-    const user = await User.findOne({ email });
+    const user = await Users.findOne({ email });
     if (user) {
         res.status(401).json({ message: "Já existe um e-mail cadastrado" });
     } else {

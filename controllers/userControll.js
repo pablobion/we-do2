@@ -1,4 +1,10 @@
+const { response } = require("express");
 const Users = require("../models/users");
+
+require("dotenv-safe").config();
+const jwt = require("jsonwebtoken");
+
+const bcrypt = require("bcrypt");
 
 exports.create = function (req, res, next) {
     // Users.find({ email: req.body.email }, function (err, docs) {
@@ -19,11 +25,32 @@ exports.create = function (req, res, next) {
     });
 };
 
-exports.delete = (req, res) => {
-    const userDelete = {
-        email: req.body.email,
-        password: req.body.password,
-    };
+exports.delete = async (req, res) => {
+    const { email } = req.body;
 
-    //fazendo
+    const user = await Users.deleteMany({ email });
+
+    if (user) {
+        res.status(200).json({ message: "Usuario deletado" });
+    } else {
+        response.json({ message: "n ahamos" });
+    }
+};
+
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await Users.findOne({ email });
+
+    const token = jwt.sign({ id: user._id }, process.env.SECRET, {
+        expiresIn: 86400,
+    });
+
+    const isPasswordRight = await bcrypt.compare(password, user.password);
+
+    if (isPasswordRight && user) {
+        res.status(200).json({ success: true, token });
+    } else {
+        res.status(401).json({ message: "E-mail ou senha incorreta." });
+    }
 };
