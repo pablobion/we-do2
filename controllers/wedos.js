@@ -1,5 +1,4 @@
 const Boards = require("../models/boards");
-const database = require("../database/connection");
 
 //Adicionar smartphone à BD
 exports.create = function (req, res) {

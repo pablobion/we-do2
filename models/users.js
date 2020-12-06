@@ -23,4 +23,4 @@ UserSchema.pre("save", async function (next) {
 });
 
 // Exportar o modelo
-module.exports = mongoose.model("boards", SmartphoneSchema);
+module.exports = mongoose.model("users", UserSchema);
