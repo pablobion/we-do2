@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const database = require("./database/connection");
 
 //rotas
-const smartphones = require("./routes/wedos"); // Importa rota
+const boardRoute = require("./routes/boardRoute"); // Importa rota
 const user = require("./routes/user");
 
 //middleware
@@ -19,7 +19,7 @@ const HOST = "0.0.0.0";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/smartphone", verifyJWT, smartphones);
+app.use("/board", verifyJWT, boardRoute);
 app.use("/user", user);
 
 //database

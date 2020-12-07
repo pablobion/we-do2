@@ -29,7 +29,7 @@ exports.delete = async (req, res) => {
         if (!user) return res.status(401).json({ message: "Não existe ou o e-mail está incorreto." });
 
         await Users.deleteMany({ email });
-        res.status(200).json({ message: "Usuario deletado" });
+        res.status(200).json({ message: "Usuario deletado", auth: false, token: null });
     } catch (err) {
         response.status(401).json({ message: err });
     }
@@ -53,4 +53,8 @@ exports.login = async (req, res) => {
     } else {
         res.status(401).json({ message: "E-mail ou senha incorreta." });
     }
+};
+
+exports.logout = (req, res) => {
+    res.status(200).json({ auth: false, token: null });
 };

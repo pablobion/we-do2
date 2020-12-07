@@ -13,5 +13,6 @@ const User = require("../models/users");
 router.post("/create", verifyEmail, userControll.create);
 router.delete("/delete", verifyJWT, userControll.delete);
 router.post("/login", userControll.login);
+router.post("/logout", userControll.logout);
 
 module.exports = router;
